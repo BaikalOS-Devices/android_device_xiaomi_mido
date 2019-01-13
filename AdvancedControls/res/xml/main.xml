@@ -15,15 +15,18 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/tools">
-    <SwitchPreference
-        android:key="restore_on_boot"
-        android:title="@string/restore_on_boot"
-        android:defaultValue="false" />
-    <SwitchPreference
-        android:key="slow_wakeup_fix"
-        android:title="@string/slow_wakeup_fix_title"
-        android:summary="@string/slow_wakeup_fix_summary"
-        android:defaultValue="false" />	
+    <PreferenceCategory
+        android:title="@string/category_sound" >
+        <Preference
+        android:key="xiaomi_parts"
+        android:persistent="false"
+        android:title="@string/dirac_title"
+        android:summary="@string/dirac_summary" >
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="org.lineageos.settings"
+            android:targetClass="org.lineageos.settings.dirac.DiracActivity"/>
+        </Preference>
+    </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/category_vibrator" > 
         <com.thht.settings.device.VibratorStrengthPreference
@@ -86,5 +89,16 @@ xmlns:app="http://schemas.android.com/tools">
             android:key="scr_cont"
             android:title="@string/scr_cont" />
     </PreferenceCategory>
-
+    <PreferenceCategory
+        android:title="@string/category_misc" >
+        <SwitchPreference
+            android:key="restore_on_boot"
+            android:title="@string/restore_on_boot"
+            android:defaultValue="false" />
+        <SwitchPreference
+            android:key="slow_wakeup_fix"
+            android:title="@string/slow_wakeup_fix_title"
+            android:summary="@string/slow_wakeup_fix_summary"
+            android:defaultValue="false" />
+    </PreferenceCategory>
 </PreferenceScreen>

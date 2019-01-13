@@ -66,6 +66,8 @@ public class DeviceSettings extends PreferenceActivity implements
     public static final String KEY_SCREEN_COLOR = "key_screen_color";
     public static final String KEY_KCAL_EXTRAS = "key_kcal_extras";
     public static final String KEY_SLOW_WAKEUP_FIX = "slow_wakeup_fix";
+    
+    public static final String KEY_XIAOMI_PARTS = "xiaomi_parts";
 
     public static final String FILE_LEVEL_WAKEUP = "/sys/devices/soc/qpnp-smbcharger-18/power_supply/battery/subsystem/bms/hi_power";
 
@@ -78,6 +80,7 @@ public class DeviceSettings extends PreferenceActivity implements
     private ListPreference kcalPresetsListPreference;
     private PreferenceCategory screenColorCategory;
     private PreferenceCategory kcalExtrasCategory;
+    private Preference mXiaomiParts;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -102,6 +105,11 @@ public class DeviceSettings extends PreferenceActivity implements
         mWhiteTorchBrightness = (WhiteTorchBrightnessPreference) findPreference(KEY_WHITE_TORCH_BRIGHTNESS);
         if (mWhiteTorchBrightness != null) {
             mWhiteTorchBrightness.setEnabled(WhiteTorchBrightnessPreference.isSupported());
+        }
+
+        mXiaomiParts = (Preference) findPreference(KEY_XIAOMI_PARTS);
+        if (mXiaomiParts != null) {
+            mXiaomiParts.setEnabled(Utils.isPackageInstalled(this, "org.lineageos.settings"));
         }
 
         restoreOnBootPreference = (SwitchPreference) findPreference(KEY_RESTORE_ON_BOOT);
