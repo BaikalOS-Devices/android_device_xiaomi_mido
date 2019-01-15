@@ -14,9 +14,12 @@ import android.view.MenuItem;
 import com.thht.settings.device.helpers.StaticMembers;
 import com.thht.settings.device.helpers.Utils;
 import com.thht.settings.device.kcal.KcalExtrasDialogFragment;
+import com.thht.settings.device.kcal.KcalPresets;
 import com.thht.settings.device.kcal.KcalRGBDialogFragment;
 import com.thht.settings.device.torch.TorchBrightnessDialogFragment;
 import com.thht.settings.device.vibrator.VibratorStrengthDialogFragment;
+
+import android.util.Log;
 
 public class CustomPreferenceFragment extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener {
@@ -69,19 +72,21 @@ public class CustomPreferenceFragment extends PreferenceFragment implements
     public boolean onPreferenceChange(Preference preference, Object newValue) {
 
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
-        boolean value = (Boolean) newValue;
 
         // restore on boot
         if (preference == mRestorePref) {
+            boolean value = (Boolean) newValue;
             editor.putBoolean(StaticMembers.KEY_RESTORE_ON_BOOT, value);
         }
         // kcal preset switch
         else if (preference == mKCALPresetPref) {
+            boolean value = (Boolean) newValue;
             editor.putBoolean(StaticMembers.KEY_KCAL_PRESETS, value);
             setKcalPresetsDependents(value);
         }
         // wakeup fix
         else if (preference == mWakeUpPref) {
+            boolean value = (Boolean) newValue;
             editor.putBoolean(StaticMembers.KEY_SLOW_WAKEUP_FIX, value);
             setSlowWakeupFix(value);
         }
@@ -89,10 +94,10 @@ public class CustomPreferenceFragment extends PreferenceFragment implements
         else if (preference == mKCALPresetListPref) {
             String currValue = (String) newValue;
             editor.putString(StaticMembers.KEY_KCAL_PRESETS_LIST, currValue);
-            mKCALPresetListPref.setValue(currValue);
+            KcalPresets.setValue(currValue);
         }
 
-        editor.apply();
+        editor.commit();
 
         return true;
     }
@@ -200,8 +205,8 @@ public class CustomPreferenceFragment extends PreferenceFragment implements
         mDiracPref.setEnabled(Utils.isPackageInstalled(getContext(), "org.lineageos.settings"));
 
         // torch
-        mYTorchPref.setEnabled(TorchBrightnessDialogFragment.isSupported());
-        mWTorchPref.setEnabled(TorchBrightnessDialogFragment.isSupported());
+        mYTorchPref.setEnabled(TorchBrightnessDialogFragment.isSupported(StaticMembers.FILE_LEVEL_TORCH_YELLOW));
+        mWTorchPref.setEnabled(TorchBrightnessDialogFragment.isSupported(StaticMembers.FILE_LEVEL_TORCH_WHITE));
 
         // vibrator
         mVibratorPref.setEnabled(VibratorStrengthDialogFragment.isSupported());
@@ -213,16 +218,15 @@ public class CustomPreferenceFragment extends PreferenceFragment implements
         mKCALBPref.setEnabled(isKcalSupported);
 
         // kcal extras
-        boolean isKcalExtrasSupported = KcalExtrasDialogFragment.isSupported();
-        mKCALMinPref.setEnabled(isKcalExtrasSupported);
-        mKCALSatPref.setEnabled(isKcalExtrasSupported);
-        mKCALHuePref.setEnabled(isKcalExtrasSupported);
-        mKCALValPref.setEnabled(isKcalExtrasSupported);
-        mKCALContPref.setEnabled(isKcalExtrasSupported);
+        mKCALMinPref.setEnabled(isKcalSupported);
+        mKCALSatPref.setEnabled(isKcalSupported);
+        mKCALHuePref.setEnabled(isKcalSupported);
+        mKCALValPref.setEnabled(isKcalSupported);
+        mKCALContPref.setEnabled(isKcalSupported);
 
         // kcal presets
-        mKCALPresetPref.setEnabled(isKcalSupported && isKcalExtrasSupported);
-        mKCALPresetListPref.setEnabled(isKcalSupported && isKcalExtrasSupported);
+        mKCALPresetPref.setEnabled(isKcalSupported);
+        mKCALPresetListPref.setEnabled(isKcalSupported);
 
         // wakeup
         mWakeUpPref.setEnabled(Utils.fileWritable(StaticMembers.FILE_LEVEL_WAKEUP));
@@ -234,7 +238,7 @@ public class CustomPreferenceFragment extends PreferenceFragment implements
         mRestorePref.setChecked(mShouldRestore);
 
         // kcal presets
-        if (KcalRGBDialogFragment.isSupported() && KcalExtrasDialogFragment.isSupported()) {
+        if (KcalRGBDialogFragment.isSupported()) {
             mKCALPresetPref.setChecked(mShouldRestorePreset);
             setKcalPresetsDependents(mShouldRestorePreset);
             if (mShouldRestore && mShouldRestorePreset)
@@ -256,6 +260,9 @@ public class CustomPreferenceFragment extends PreferenceFragment implements
         mWakeUpPref.setOnPreferenceChangeListener(this);
 
         // preference click listeners
+        mVibratorPref.setOnPreferenceClickListener(this);
+        mYTorchPref.setOnPreferenceClickListener(this);
+        mWTorchPref.setOnPreferenceClickListener(this);
         mKCALRPref.setOnPreferenceClickListener(this);
         mKCALGPref.setOnPreferenceClickListener(this);
         mKCALBPref.setOnPreferenceClickListener(this);

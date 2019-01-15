@@ -75,6 +75,14 @@ public class KcalRGBDialogFragment extends DialogFragment implements SeekBar.OnS
         String storedValue = PreferenceManager.getDefaultSharedPreferences(context).getString(mPreferenceKey, defaultValue);
         Utils.writeValue(mFileLevel, storedValue);
     }
+    
+    public static void restore(Context context, String preferenceKey, String defaultValue) {
+        if (!isSupported()) {
+            return;
+        }
+        String storedValue = PreferenceManager.getDefaultSharedPreferences(context).getString(preferenceKey, defaultValue);
+        Utils.writeValue(mFileLevel, storedValue);
+    }
 
     // string parser
     private static String[] getIndividualRGB(String rgb) {
@@ -224,7 +232,7 @@ public class KcalRGBDialogFragment extends DialogFragment implements SeekBar.OnS
         setValue(finalValue);
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
         editor.putString(mPreferenceKey, finalValue);
-        editor.apply();
+        editor.commit();
     }
 
     // click action : plus one

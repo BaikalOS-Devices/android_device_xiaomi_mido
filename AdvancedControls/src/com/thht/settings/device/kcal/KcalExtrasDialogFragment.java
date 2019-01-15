@@ -165,6 +165,12 @@ public class KcalExtrasDialogFragment extends DialogFragment implements SeekBar.
         String value = String.valueOf(translate(Integer.parseInt(newValue), false));
         Utils.writeValue(fileName, value);
     }
+    
+    public static void setValue(String fileName, String newValue, int offset) {
+        mOffset = offset;
+        String value = String.valueOf(translate(Integer.parseInt(newValue), false));
+        Utils.writeValue(fileName, value);
+    }
 
     // restore stored value of kernel node
     public static void restore(String fileLevel, Context context, String defaultValue) {
@@ -172,6 +178,16 @@ public class KcalExtrasDialogFragment extends DialogFragment implements SeekBar.
             return;
         }
         String storedValue = PreferenceManager.getDefaultSharedPreferences(context).getString(mPreferenceKey, defaultValue);
+        String value = String.valueOf(translate(Integer.parseInt(storedValue), false));
+        Utils.writeValue(fileLevel, value);
+    }
+    
+    // restore stored value of kernel node
+    public static void restore(String fileLevel, Context context, String preferenceKey, String defaultValue) {
+        if (!isSupported()) {
+            return;
+        }
+        String storedValue = PreferenceManager.getDefaultSharedPreferences(context).getString(preferenceKey, defaultValue);
         String value = String.valueOf(translate(Integer.parseInt(storedValue), false));
         Utils.writeValue(fileLevel, value);
     }
@@ -187,7 +203,7 @@ public class KcalExtrasDialogFragment extends DialogFragment implements SeekBar.
         setValue(String.valueOf(value));
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
         editor.putString(mPreferenceKey, String.valueOf(value));
-        editor.apply();
+        editor.commit();
     }
 
     // click action : plus one

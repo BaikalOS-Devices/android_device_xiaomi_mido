@@ -14,10 +14,11 @@
         android:label="@string/advanced_settings"
         android:icon="@drawable/launcher"
         android:theme="@style/AppTheme"
-        android:supportsRtl="true" >
+        android:supportsRtl="true"
+        android:configChanges="orientation|keyboardHidden|screenSize">
         <activity
             android:name="com.thht.settings.device.DeviceSettings"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/advanced_settings" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +36,8 @@
         </receiver>
         <service
             android:name="com.thht.settings.device.RestoreService"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="true">
 		</service>
     </application>
 </manifest>

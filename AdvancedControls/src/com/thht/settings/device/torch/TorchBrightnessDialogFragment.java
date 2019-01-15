@@ -139,6 +139,10 @@ public class TorchBrightnessDialogFragment extends DialogFragment implements See
     public static boolean isSupported() {
         return Utils.fileWritable(mFileLevel);
     }
+    
+    public static boolean isSupported(String fileLevel) {
+        return Utils.fileWritable(fileLevel);
+    }
 
     // return value from kernel node
     public static String getValue() {
@@ -158,6 +162,14 @@ public class TorchBrightnessDialogFragment extends DialogFragment implements See
         String storedValue = PreferenceManager.getDefaultSharedPreferences(context).getString(mPreferenceKey, defaultValue);
         Utils.writeValue(fileLevel, storedValue);
     }
+    
+    public static void restore(String fileLevel, Context context, String preferenceKey, String defaultValue) {
+        if (!isSupported()) {
+            return;
+        }
+        String storedValue = PreferenceManager.getDefaultSharedPreferences(context).getString(preferenceKey, defaultValue);
+        Utils.writeValue(fileLevel, storedValue);
+    }
 
     // restore old state of node
     private void restoreOldState() {
@@ -170,7 +182,7 @@ public class TorchBrightnessDialogFragment extends DialogFragment implements See
         setValue(String.valueOf(value));
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
         editor.putString(mPreferenceKey, String.valueOf(value));
-        editor.apply();
+        editor.commit();
     }
 
     // click action : plus one

@@ -1,6 +1,7 @@
 package com.thht.settings.device.kcal;
 
 import com.thht.settings.device.helpers.StaticMembers;
+import android.util.Log;
 
 public class KcalPresets {
 
@@ -14,11 +15,11 @@ public class KcalPresets {
     public static void setValue(String value) {
         int index = Integer.parseInt(value);
         KcalRGBDialogFragment.setValue(StaticMembers.FILE_LEVEL_KCAL_RGB, rgb[index]);
-        KcalExtrasDialogFragment.setValue(StaticMembers.FILE_LEVEL_KCAL_MIN, minRgb[index]);
-        KcalExtrasDialogFragment.setValue(StaticMembers.FILE_LEVEL_KCAL_SAT, satIntensity[index]);
-        KcalExtrasDialogFragment.setValue(StaticMembers.FILE_LEVEL_KCAL_HUE, scrHue[index]);
-        KcalExtrasDialogFragment.setValue(StaticMembers.FILE_LEVEL_KCAL_VAL, scrValue[index]);
-        KcalExtrasDialogFragment.setValue(StaticMembers.FILE_LEVEL_KCAL_CONT, scrContrast[index]);
+        KcalExtrasDialogFragment.setValue(StaticMembers.FILE_LEVEL_KCAL_MIN, minRgb[index], 0);
+        KcalExtrasDialogFragment.setValue(StaticMembers.FILE_LEVEL_KCAL_SAT, satIntensity[index], 225);
+        KcalExtrasDialogFragment.setValue(StaticMembers.FILE_LEVEL_KCAL_HUE, scrHue[index], 0);
+        KcalExtrasDialogFragment.setValue(StaticMembers.FILE_LEVEL_KCAL_VAL, scrValue[index], 128);
+        KcalExtrasDialogFragment.setValue(StaticMembers.FILE_LEVEL_KCAL_CONT, scrContrast[index], 128);
     }
 
     enum Presets {

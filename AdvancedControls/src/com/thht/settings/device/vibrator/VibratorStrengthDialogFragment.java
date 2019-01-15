@@ -92,7 +92,7 @@ public class VibratorStrengthDialogFragment extends DialogFragment implements Se
         if (mVibrator.hasVibrator()) {
             int progress = seekBar.getProgress();
             int amplitude = scale(progress);
-            mVibrator.vibrate(VibrationEffect.createOneShot(mDuration, progress));
+            mVibrator.vibrate(VibrationEffect.createOneShot(mDuration, amplitude));
         }
     }
 
@@ -169,6 +169,14 @@ public class VibratorStrengthDialogFragment extends DialogFragment implements Se
         String storedValue = PreferenceManager.getDefaultSharedPreferences(context).getString(mPreferenceKey, defaultValue);
         Utils.writeValue(mFileLevel, storedValue);
     }
+    
+    public static void restore(Context context, String preferenceKey, String defaultValue) {
+        if (!isSupported()) {
+            return;
+        }
+        String storedValue = PreferenceManager.getDefaultSharedPreferences(context).getString(preferenceKey, defaultValue);
+        Utils.writeValue(mFileLevel, storedValue);
+    }
 
     // restore old state of node
     private void restoreOldState() {
@@ -181,7 +189,7 @@ public class VibratorStrengthDialogFragment extends DialogFragment implements Se
         setValue(String.valueOf(value));
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
         editor.putString(mPreferenceKey, String.valueOf(value));
-        editor.apply();
+        editor.commit();
     }
 
     // click action : plus one

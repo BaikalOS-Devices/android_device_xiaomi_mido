@@ -19,9 +19,16 @@ package com.thht.settings.device;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 
 
 public class DeviceSettings extends AppCompatActivity {
+
+    // Use dark mode for now, will make this user selectable later
+    static {
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_YES);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
