@@ -24,7 +24,7 @@ $(call inherit-product, device/xiaomi/mido/device.mk)
 # Inherit some common LiquidRemix stuff.
 $(call inherit-product, vendor/baikalos/config/common_full_phone.mk)
 export SELINUX_IGNORE_NEVERALLOWS=true
-#export BAIKALOS_BUILD_TYPE=DEV
+export BAIKALOS_BUILD_TYPE=DEV
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := mido
