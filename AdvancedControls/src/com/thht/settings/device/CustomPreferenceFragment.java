@@ -24,7 +24,7 @@ import android.util.Log;
 public class CustomPreferenceFragment extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener {
     // UI elements
-    Preference mDiracPref;
+    //Preference mDiracPref;
     Preference mVibratorPref, mYTorchPref, mWTorchPref;
     Preference mKCALRPref, mKCALGPref, mKCALBPref;
     Preference mKCALMinPref, mKCALSatPref, mKCALHuePref;
@@ -111,7 +111,7 @@ public class CustomPreferenceFragment extends PreferenceFragment implements
                     StaticMembers.KEY_YELLOW_TORCH_BRIGHTNESS).
                     show(getFragmentManager(), "YellowTorch");
         } else if (preference == mWTorchPref) {
-            TorchBrightnessDialogFragment.newInstance(StaticMembers.FILE_LEVEL_TORCH_YELLOW,
+            TorchBrightnessDialogFragment.newInstance(StaticMembers.FILE_LEVEL_TORCH_WHITE,
                     StaticMembers.KEY_WHITE_TORCH_BRIGHTNESS).
                     show(getFragmentManager(), "WhiteTorch");
         } else if (preference == mVibratorPref) {
@@ -166,7 +166,7 @@ public class CustomPreferenceFragment extends PreferenceFragment implements
         mKCALExtrasCat = (PreferenceCategory) findPreference(StaticMembers.KEY_CATEGORY_KCAL_EXTRAS);
         mKCALScrCat = (PreferenceCategory) findPreference(StaticMembers.KEY_CATEGORY_SCREEN_COLOR);
         // preferences
-        mDiracPref = findPreference(StaticMembers.KEY_DIRAC);
+        //mDiracPref = findPreference(StaticMembers.KEY_DIRAC);
         mYTorchPref = findPreference(StaticMembers.KEY_YELLOW_TORCH_BRIGHTNESS);
         mWTorchPref = findPreference(StaticMembers.KEY_WHITE_TORCH_BRIGHTNESS);
         mVibratorPref = findPreference(StaticMembers.KEY_VIB_STRENGTH);
@@ -202,7 +202,7 @@ public class CustomPreferenceFragment extends PreferenceFragment implements
     // Disable unsupported elements
     private void sanitise() {
         // dirac
-        mDiracPref.setEnabled(Utils.isPackageInstalled(getContext(), "org.lineageos.settings"));
+        //mDiracPref.setEnabled(Utils.isPackageInstalled(getContext(), "org.lineageos.settings"));
 
         // torch
         mYTorchPref.setEnabled(TorchBrightnessDialogFragment.isSupported(StaticMembers.FILE_LEVEL_TORCH_YELLOW));
