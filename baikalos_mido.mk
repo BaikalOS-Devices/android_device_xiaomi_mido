@@ -21,10 +21,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from mido device
 $(call inherit-product, device/xiaomi/mido/device.mk)
 
-# Inherit some common LiquidRemix stuff.
+# Inherit some common BaikalOS stuff.
 $(call inherit-product, vendor/baikalos/config/common_full_phone.mk)
-export SELINUX_IGNORE_NEVERALLOWS=true
-export BAIKALOS_BUILD_TYPE=DEV
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := mido
