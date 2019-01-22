@@ -150,7 +150,8 @@ PRODUCT_PACKAGES += \
 
 # Device-specific settings
 PRODUCT_PACKAGES += \
-    XiaomiParts
+    BaikalParts \
+    BaikalDoze
 
 # DRM
 PRODUCT_PACKAGES += \

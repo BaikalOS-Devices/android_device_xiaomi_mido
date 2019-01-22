@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) 2018 The LineageOS Project
+<!-- Copyright (C) 2014-2017 The OmniROM Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,43 +14,57 @@
      limitations under the License.
 -->
 <resources>
-    <!-- Dirac settings -->
-    <string name="dirac_title">Dirac sound enhancer</string>
-    <string name="dirac_headset_title">Headset type</string>
-    <string name="dirac_preset_title">Sound preset</string>
+    <!-- App -->
+    <string name="app_name">BaikalOS Device Extras</string>
+    <string name="advanced_settings">Advanced</string>
 
-    <string name="dirac_headset_default">Default</string>
-    <string name="dirac_headset_earbuds">Mi Earbuds</string>
-    <string name="dirac_headset_in_ear_2013">Mi In-Ear (2013)</string>
-    <string name="dirac_headset_piston_1">Mi Piston 1</string>
-    <string name="dirac_headset_general">General Earbuds</string>
-    <string name="dirac_headset_general_inear">General In-Ear</string>
-    <string name="dirac_headset_piston_basic">Basic Edition</string>
-    <string name="dirac_headset_piston_2">Mi Piston 2</string>
-    <string name="dirac_headset_piston_standard">Mi Piston 3</string>
-    <string name="dirac_headset_headphone">Mi Headphone</string>
-    <string name="dirac_headset_piston_youth">Youth Edition</string>
-    <string name="dirac_headset_piston_color">Color Edition</string>
-    <string name="dirac_headset_in_ear">Mi In-Ear</string>
-    <string name="dirac_headset_capsule">Mi Capsule</string>
-    <string name="dirac_headset_in_ear_pro">Mi In-Ear Pro</string>
-    <string name="dirac_headset_comfort">Mi Comfort</string>
-    <string name="dirac_headset_reduction_noise">Mi Noise Cancelling (Type-C)</string>
-    <string name="dirac_headset_cancelling">Mi Noise Cancelling (3.5mm)</string>
-    <string name="dirac_headset_half_in_ear">Mi Half In-Ear</string>
-    <string name="dirac_headset_in_ear2">Mi In-Ear 2</string>
-    <string name="dirac_headset_earphone_basic">Mi Earphones Basic</string>
-    <string name="dirac_headset_earphone">Mi Earphones</string>
+    <!-- Ambient display -->
+    <string name="display_title">Display</string>
+    <string name="device_doze_title">Ambient display</string>
 
-    <string name="dirac_preset_default">Default</string>
-    <string name="dirac_preset_rock">Rock</string>
-    <string name="dirac_preset_jazz">Jazz</string>
-    <string name="dirac_preset_pop">Pop</string>
-    <string name="dirac_preset_classical">Classical</string>
-    <string name="dirac_preset_hiphop">Hiphop</string>
-    <string name="dirac_preset_blues">Blues</string>
-    <string name="dirac_preset_electronic">Electronic</string>
-    <string name="dirac_preset_country">Country</string>
-    <string name="dirac_preset_dance">Dance</string>
-    <string name="dirac_preset_metal">Metal</string>
+    <!-- Battery -->
+    <string name="battery_settings_title">Battery</string>
+    <string name="qc_title">Quick Charge</string>
+    <string name="qc_summary">Enable/disable quick charge settings</string>
+
+    <!-- Camera -->
+    <string name="camera_pref_title">Camera</string>
+    <string name="camera_focus_fix_title">Autofocus Fix</string>
+    <string name="camera_focus_fix_summary">For devices with autofocus problem</string>
+
+    <!-- Kcal -->
+    <string name="kcal_title">Display color</string>
+    <string name="kcal_summary">Display color calibration using KCAL</string>
+    <string name="kcal_enabled_title">Enable KCAL</string>
+    <string name="kcal_enabled_summary">Turn on display calibration using KCAL</string>
+    <string name="kcal_red">Red</string>
+    <string name="kcal_green">Green</string>
+    <string name="kcal_blue">Blue</string>
+    <string name="kcal_saturation">Saturation</string>
+    <string name="kcal_contrast">Constrast</string>
+    <string name="menu_reset">Reset</string>
+    <string name="kcal_color_temp">Color temperature (K)</string>
+
+    <!-- Volte -->
+    <string name="volte_pref_title">VoLTE Hack</string>
+    <string name="volte_fix_title">Enable VoLTE</string>
+    <string name="volte_fix_summary">requires reboot,sim settings resets after every reboot</string>
+
+    <!-- HALL Sensor -->
+    <string name="hall_srv_title">HALL Sensor</string>
+    <string name="hall_srv_summary">Enable HALL sensor driver</string>
+
+    <!-- FB Boost -->
+    <string name="fb_boost_title">Boost on Draw</string>
+    <string name="fb_boost_summary">Boost CPU on frame draw. Could increase battery drain while screen is on</string>
+
+    <string name="qfp_wup_title">Wakeup on FP</string>
+    <string name="qfp_wup_summary">Wakeup on FP immediately on finger detect before authentication. Reboot required!</string>
+
+    <string name="qfp_enable_title">Enable FP</string>
+    <string name="qfp_enable_summary">Enable Fingerprint Sensor</string>
+
+    <string name="hw_0d_disable_title">Disable HW Keys</string>
+    <string name="hw_0d_disable_summary">Disable HW Keys</string>
+
 </resources>
